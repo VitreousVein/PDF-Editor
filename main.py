@@ -1,4 +1,4 @@
-from tkinter import CENTER, ttk, filedialog
+from tkinter import CENTER, X, ttk, filedialog
 import tkinter as tk
 from PyPDF2 import PdfFileReader, PdfFileWriter
 
@@ -60,7 +60,6 @@ class Tkinter:
     def exit_program(self):
         self.watch = self.button4.quit()
 
-
     def pdf_location(self):
         self.files = filedialog.askopenfilenames()
         self.files = str(self.files)
@@ -103,7 +102,7 @@ class Tkinter:
         
 
     def split(self):
-        print("split")
+        PDF.split()
  
 
     def combine(self):
@@ -144,6 +143,7 @@ class PDF:
             pdf_writer.write(fh)
 
     def rotate_180():
+
         pdf_writer = PdfFileWriter()
         pdf_reader1 = PdfFileReader(tkinter.pdf_location())
         if tkinter.page_number_all() == True:
@@ -159,6 +159,19 @@ class PDF:
         with open(tkinter.set_location.get(), 'wb') as fh:
             pdf_writer.write(fh)
 
+    def split():
+        pdf_reader = PdfFileReader(tkinter.pdf_location())
+
+        i = 0
+        while i <= (tkinter.page_number() - 1):
+            print(i)
+            pdf_writer = PdfFileWriter()
+            page_i = pdf_reader.getPage(i)
+            pdf_writer.addPage(page_i)
+            output = f'{tkinter.set_location.get().replace(".pdf", "")}-page{i + 1}.pdf'
+            with open(output, 'wb') as output_pdf:
+                pdf_writer.write(output_pdf)
+            i += 1
 
 if __name__ == "__main__":
     #Initiation()
