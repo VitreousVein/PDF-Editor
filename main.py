@@ -124,7 +124,7 @@ class PDF:
         pdf_reader = PdfFileReader(tkinter.pdf_location())
         # Rotate page 90 degrees to the right
         
-        if tkinter.page_number_all == True:
+        if tkinter.page_number_all() == True:
             i = 0
             while i <= (tkinter.page_number() - 1):
                 print(i)
@@ -134,6 +134,8 @@ class PDF:
         elif tkinter.page_number_all() == False:
             page_1 = pdf_reader.getPage(tkinter.page_number()).rotateClockwise(90)
             pdf_writer.addPage(page_1)
+
+        
         
 
         with open(tkinter.set_location.get(), 'wb') as fh:
