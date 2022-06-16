@@ -108,7 +108,7 @@ class Tkinter:
     def split(self):
         self.page_number()
         print("split")
-
+ 
 
     def combine(self):
         self.page_number()
