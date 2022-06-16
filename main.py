@@ -82,6 +82,7 @@ class Tkinter:
             page_number = PdfFileReader(self.set_location.get()).getNumPages()
         return page_number 
 
+
     def page_number_all(self):
         if self.set_page.get() == "all":
             page_number_all = True
@@ -89,21 +90,19 @@ class Tkinter:
             page_number_all = True
         return page_number_all
 
+
     def rotate_right(self):
         PDF.rotate_right()
-
         print(self.page_number())
 
     def rotate_left(self):
         PDF.rotate_left()
         self.page_number()
         
-
     def rotate_180(self):
         PDF.rotate_180()
         self.page_number()
         
-
 
     def split(self):
         self.page_number()
@@ -134,9 +133,6 @@ class PDF:
         elif tkinter.page_number_all() == False:
             page_1 = pdf_reader.getPage(tkinter.page_number()).rotateClockwise(90)
             pdf_writer.addPage(page_1)
-
-        
-        
 
         with open(tkinter.set_location.get(), 'wb') as fh:
             pdf_writer.write(fh)
