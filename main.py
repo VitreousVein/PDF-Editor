@@ -116,53 +116,54 @@ class Tkinter:
 
 
 class PDF:
-    def rotate_right():
-        
-        #tkinter.pdf_location()
-
-        pdf_writer = PdfFileWriter()
-        pdf_reader = PdfFileReader(tkinter.pdf_location())
-        # Rotate page 90 degrees to the right
-        
+    def __init__(self):
+        self.pdf_writer = PdfFileWriter()
+        self.pdf_reader1 = PdfFileReader(tkinter.pdf_location())
+    
+    def rotate_right(self):
         if tkinter.page_number_all() == True:
             i = 0
             while i <= (tkinter.page_number() - 1):
-                page_i = pdf_reader.getPage(i).rotateClockwise(90)
-                pdf_writer.addPage(page_i)
+                page_i = self.pdf_reader1.getPage(i).rotateClockwise(90)
+                self.pdf_writer.addPage(page_i)
                 i += 1
                 print(i)
         elif tkinter.page_number_all() == False:
-            page_1 = pdf_reader.getPage(int(tkinter.set_page.get()) - 1).rotateClockwise(90)
-            pdf_writer.addPage(page_1)
+            page_1 = self.pdf_reader1.getPage(int(tkinter.set_page.get()) - 1).rotateClockwise(90)
+            self.pdf_writer.addPage(page_1)
 
         with open(tkinter.set_location.get(), 'wb') as fh:
-            pdf_writer.write(fh)
+            self.pdf_writer.write(fh)
     
-    def rotate_left():
-        
-        #tkinter.pdf_location()
-
-        pdf_writer = PdfFileWriter()
-        pdf_reader = PdfFileReader(tkinter.pdf_location())
-        # Rotate page 90 degrees to the left
-        page_1 = pdf_reader.getPage(0).rotateClockwise(270)
-        pdf_writer.addPage(page_1)
-
-        with open(tkinter.set_location.get(), 'wb') as fh:
-            pdf_writer.write(fh)
-
-    def rotate_180():
-        
-        #tkinter.pdf_location()
-
-        pdf_writer = PdfFileWriter()
-        pdf_reader = PdfFileReader(tkinter.pdf_location())
-        # Rotate page 90 degrees to the right
-        page_1 = pdf_reader.getPage(0).rotateClockwise(180)
-        pdf_writer.addPage(page_1)
+    def rotate_left(self):
+        if tkinter.page_number_all() == True:
+            i = 0
+            while i <= (tkinter.page_number() - 1):
+                page_i = self.pdf_reader1.getPage(i).rotateClockwise(270)
+                self.pdf_writer.addPage(page_i)
+                i += 1
+                print(i)
+        elif tkinter.page_number_all() == False:
+            page_1 = self.pdf_reader1.getPage(int(tkinter.set_page.get()) - 1).rotateClockwise(270)
+            self.pdf_writer.addPage(page_1)
 
         with open(tkinter.set_location.get(), 'wb') as fh:
-            pdf_writer.write(fh)
+            self.pdf_writer.write(fh)
+
+    def rotate_180(self):
+        if tkinter.page_number_all() == True:
+            i = 0
+            while i <= (tkinter.page_number() - 1):
+                page_i = self.pdf_reader1.getPage(i).rotateClockwise(180)
+                self.pdf_writer.addPage(page_i)
+                i += 1
+                print(i)
+        elif tkinter.page_number_all() == False:
+            page_1 = self.pdf_reader1.getPage(int(tkinter.set_page.get()) - 1).rotateClockwise(180)
+            self.pdf_writer.addPage(page_1)
+
+        with open(tkinter.set_location.get(), 'wb') as fh:
+            self.pdf_writer.write(fh)
 
 
 if __name__ == "__main__":
