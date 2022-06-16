@@ -82,12 +82,13 @@ class Tkinter:
             page_number = PdfFileReader(self.set_location.get()).getNumPages()
         return page_number 
 
-
     def page_number_all(self):
         if self.set_page.get() == "all":
             page_number_all = True
         elif self.set_page.get() == "":
             page_number_all = True
+        else:
+            page_number_all = False
         return page_number_all
 
 
@@ -126,12 +127,12 @@ class PDF:
         if tkinter.page_number_all() == True:
             i = 0
             while i <= (tkinter.page_number() - 1):
-                print(i)
                 page_i = pdf_reader.getPage(i).rotateClockwise(90)
                 pdf_writer.addPage(page_i)
                 i += 1
+                print(i)
         elif tkinter.page_number_all() == False:
-            page_1 = pdf_reader.getPage(tkinter.page_number()).rotateClockwise(90)
+            page_1 = pdf_reader.getPage(int(tkinter.set_page.get()) - 1).rotateClockwise(90)
             pdf_writer.addPage(page_1)
 
         with open(tkinter.set_location.get(), 'wb') as fh:
